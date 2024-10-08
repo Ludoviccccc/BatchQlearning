@@ -10,7 +10,6 @@ In a loop:
 $\hspace*{5mm}$        4. $\Phi\leftarrow\alpha\sum_{i}\frac{dQ_{\Phi}}{d\Phi}(Q_{\Phi}(s_i,a_i) -[r(s_i,a_i)+\gamma max_{a^{'}} Q_{\Phi^{'}}(s_i,a_i)])$ <br>
 
 
-![alt text](AlgoImage.png)
 The environement is a grid of size $(n_x,n_y)$. An agent has to reach a point called G.<br>
 There are 8 possible actions: up, right, left, down, up-right, up-left, down-right, down-left.
 Integers N and K are the number of iterations for the loop 2 of the collection of the datapoints from the buffer and for the loop 3 with the batch sampling and the update. The process is repeted $n_{epochs}$ times.<br>
