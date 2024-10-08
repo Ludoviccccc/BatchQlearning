@@ -7,7 +7,7 @@ In a loop:
   1. Save target network parameters: $\Phi^{'}\leftarrow \Phi$<br>
  $N \times \rightarrow$    2. Collect M datapoints $(s_i,a_i,s_i^{'},r_i)$ using some policy, add them to $\beta$ <br>
  $K \times \rightarrow$       3.  Sample a batch $(s_i,a_i, s_i^{i},r_i)$ from $\beta$<br>
-        4. $\Phi\leftarrow\alpha\sum_{i}\frac{dQ_{\Phi}}{d\Phi}(Q_{\Phi}(s_i,a_i) -[r(s_i,a_i)+\gamma max_{a^{'}} Q_{\Phi^{'}}(s_i,a_i)])$ <br>
+$\hspace*{5mm}$        4. $\Phi\leftarrow\alpha\sum_{i}\frac{dQ_{\Phi}}{d\Phi}(Q_{\Phi}(s_i,a_i) -[r(s_i,a_i)+\gamma max_{a^{'}} Q_{\Phi^{'}}(s_i,a_i)])$ <br>
 
 
 ![alt text](AlgoImage.png)
