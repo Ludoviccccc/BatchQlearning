@@ -1,5 +1,14 @@
 # Implementation of a parallel Qlearning algorithm with pyTorch
 I follow the course CS 285 at UC Berkeley.
+
+
+Q-learning with replay buffer and target network:
+  1. save target network parameters: $\Phi^{'}\leftarrow \Phi$
+    2. collect M datapoints $(s_i,_ai,s_i^{'},r_i)$ using some policy, add them to $\Beta$
+    3. Sample a batch (s_i,a_i, s_i^{i},r_i) from $\Beta$
+    4. $\Phi\leftarrow\alpha\sum_{i}\frac{d\Q_{\Phi}}{d\Phi}(Q_{\Phi}(s_i,a_i)-)
+
+
 ![alt text](AlgoImage.png)
 The environement is a grid of size $(n_x,n_y)$. An agent has to reach a point called G.<br>
 There are 8 possible actions: up, right, left, down, up-right, up-left, down-right, down-left.
