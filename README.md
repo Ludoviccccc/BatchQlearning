@@ -1,4 +1,4 @@
-# Implementation of a parallel Qlearning algorithm
+# Implementation of a parallel Qlearning algorithm with pyTorch
 I follow the course CS 285 at UC Berkeley.
 ![alt text](AlgoImage.png)
 The environement is a grid of size $(n_x,n_y)$. An agent has to reach a point called G.<br>
@@ -32,5 +32,9 @@ d (0, 1)<br>
  [0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 0. 0.]]<br>
-4 pas de temps
+4 pas de temps <br>
 
+* The file qlearning.py implements the loop in a function called qlearn.
+* The file Qfunc.py implements the action-value network Q.
+* The file Buffer.py implements the buffer containing batchs (s,a,s',r)
+* The file main.py calls qlearn nad gives values for $K$ and $N$.
