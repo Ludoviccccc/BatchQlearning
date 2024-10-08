@@ -3,10 +3,10 @@ I follow the course CS 285 at UC Berkeley.
 
 
 Q-learning with replay buffer and target network:
-  1. save target network parameters: $\Phi^{'}\leftarrow \Phi$
-    2. collect M datapoints $(s_i,_ai,s_i^{'},r_i)$ using some policy, add them to $\Beta$
-    3. Sample a batch (s_i,a_i, s_i^{i},r_i) from $\Beta$
-    4. $\Phi\leftarrow\alpha\sum_{i}\frac{d\Q_{\Phi}}{d\Phi}(Q_{\Phi}(s_i,a_i)-)
+  1. save target network parameters: $\Phi^{'}\leftarrow \Phi$<\br>
+    2. collect M datapoints $(s_i,a_i,s_i^{'},r_i)$ using some policy, add them to $\Beta$<\br>
+    3. Sample a batch (s_i,a_i, s_i^{i},r_i) from $\Beta$<\br>
+    4. $\Phi\leftarrow\alpha\sum_{i}\frac{d\Q_{\Phi}}{d\Phi}(Q_{\Phi}(s_i,a_i)-)<\br>
 
 
 ![alt text](AlgoImage.png)
