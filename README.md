@@ -1,4 +1,4 @@
-# Implementation of a parallel Qlearning algorithm with pyTorch
+# Implementation of a parallel Q-learning algorithm with pyTorch
 I follow the course CS 285 at UC Berkeley.
 
 
