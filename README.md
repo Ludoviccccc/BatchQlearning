@@ -1,5 +1,5 @@
 # Implementation of a parallel Q-learning algorithm with pyTorch
-I follow the course CS 285 at UC Berkeley.
+I was inspired by course CS 285 at UC Berkeley.
 
 
 Q-learning with replay buffer and target network:<br>
@@ -19,7 +19,7 @@ Integers N and K are the number of iterations for the loop 2 of the collection o
 * The file qlearning.py implements the loop in a function called qlearn.
 * The file Qfunc.py implements the action-value network Q.
 * The file Buffer.py implements the buffer containing batchs (s,a,s',r* The file main.py calls qlearn and gives values for $K$, $N$,$n_{epochs}$, gradient descent rate $\alpha$, $n_x$ and $n_y$. 
-* The file main.py calls qlearn and gives values for $K$, $N, n_{epochs}$, gradient descent rate $\alpha$, $n_x$ and $n_y$. 
+* The file main.py calls qlearn and gives values for $K$, $N, n_{epochs}$, gradient descent rate $\alpha$, $n_x$,$n_y$ and the batch size. <br> 
 d (-1, 0)<br>
 [[0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 6. 0.]<br>
