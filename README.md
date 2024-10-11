@@ -1,4 +1,4 @@
-# Implementation of a parallel Q-learning algorithm with pyTorch
+# Implementation of a parallel Q-learning algorithm in a gridworld environment with pyTorch
 I follow the course CS 285 at UC Berkeley.
 
 
@@ -18,8 +18,10 @@ Integers N and K are the number of iterations for the loop 2 of the collection o
 * The file env.py implements the environment which is the grid.
 * The file qlearning.py implements the loop in a function called qlearn.
 * The file Qfunc.py implements the action-value network Q.
-* The file Buffer.py implements the buffer containing batchs (s,a,s',r* The file main.py calls qlearn and gives values for $K$, $N$,$n_{epochs}$, gradient descent rate $\alpha$, $n_x$ and $n_y$. 
+* The file Buffer.py implements the buffer containing batchs (s,a,s',r)
 * The file main.py calls qlearn and gives values for $K$, $N, n_{epochs}$, gradient descent rate $\alpha$, $n_x$ and $n_y$. 
+
+On representations there after, 6 is a target position, and the agent is represented by the number 1.
 d (-1, 0)<br>
 [[0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 6. 0.]<br>
