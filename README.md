@@ -16,10 +16,25 @@ Integers N and K are the number of iterations for the loop 2 of the collection o
 
 
 * The file env.py implements the environment which is the grid.
+* The file agent.py implements the agent
 * The file qlearning.py implements the loop in a function called qlearn.
 * The file Qfunc.py implements the action-value network Q.
 * The file Buffer.py implements the buffer containing batchs (s,a,s',r)
 * The file main.py calls qlearn and gives values for $K$, $N, n_{epochs}$, gradient descent rate $\alpha$, $n_x, n_y$ and the batch size. <br> 
+
+
+Futur works:
+Calculation of the values of the Q function and calculation of the return obtained, and compare the curves obtained according to the iterations during the learning.<br>
+
+
+
+d (-1, 0)<br>
+[[0. 0. 0. 0. 0. 0.]<br>
+ [0. 0. 0. 0. 6. 0.]<br>
+ [0. 0. 0. 0. 0. 0.]<br>
+ [0. 0. 1. 0. 0. 0.]<br>
+ [0. 0. 0. 0. 0. 0.]<br>
+ [0. 0. 0. 0. 0. 0.]]<br>
 d (-1, 0)<br>
 [[0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 6. 0.]<br>
@@ -40,7 +55,7 @@ d (0, 1)<br>
  [0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 0. 0.]<br>
- [0. 0. 0. 0. 0. 0.]]<br>
+ [0. 0. 0. 0. 0. 0.]]
 d (0, 1)<br>
 [[0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 1. 0.]<br>
@@ -48,5 +63,4 @@ d (0, 1)<br>
  [0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 0. 0.]<br>
  [0. 0. 0. 0. 0. 0.]]<br>
-4 pas de temps <br>
-
+5 pas de temps

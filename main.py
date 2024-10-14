@@ -3,13 +3,13 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pad_sequence
 import sys
-from policy import policy
 from Qfunc import Q
 from buffer import Buffer
 from env import grid
 import os
 from qlearning import qlearn, test
 import matplotlib.pyplot as plt
+from agent import Agent
 if __name__=="__main__":
     train = False
     testmode = True
@@ -28,8 +28,10 @@ if __name__=="__main__":
     loadpath = "loads"
     loadopt = "opt"
     maxsize = 100
+    na = 8
     env = grid(nx,ny,G = G) 
-    Qvalue = Q(env)
+    agent = Agent(na,nx,ny,epsilon)
+    Qvalue = Q(env,agent)
     optimizerQ = optim.Adam(Qvalue.parameters(), lr = lr) 
     if start>0:
         Qvalue.load_state_dict(torch.load(os.path.join(loadpath,f"q_load_{n_epochs}_0.pt"), weights_only=True))
@@ -42,6 +44,7 @@ if __name__=="__main__":
                N,
                K,
                Qvalue,
+               agent,
                optimizerQ,
                env,
                n_epochs,
@@ -50,4 +53,4 @@ if __name__=="__main__":
                gamma = gamma
                )
     if test:
-        test(Qvalue, env, epsilon = 0, plot = True)
+        test(Qvalue,agent, env, epsilon = 0, plot = True)

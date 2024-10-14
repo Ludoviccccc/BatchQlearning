@@ -8,10 +8,9 @@ class grid:
     """
     Envirnonement grille sur laquelle se deplace l'agent jusqu'à atteindre le point G
     """
-    def __init__(self,Nx,Ny, G = 50,epsilon=0.05):
+    def __init__(self,Nx,Ny, G = 50):
         assert(0<=G<Nx*Ny)
         self.actions = [(0,1), (0, -1), (1, 0), (-1, 0),(1,1),(1,-1),(-1,-1),(-1,1)]
-        self.epsilon = epsilon
         self.Na = len(self.actions)
         self.Nx = Nx
         self.Ny = Ny
@@ -39,11 +38,6 @@ class grid:
         print(T)
     def tensor_state(self,s):
         return self.states_encod[:,:,s]
-    def zero_one(self,state,J):
-        x = nn.functional.one_hot(state,J)
-        x = x.reshape((len(state),-1))
-        x = x.type(torch.float32)
-        return x
     def representation_action(self,a):
         return torch.Tensor([self.actions[int(i)][0] for i in a]), torch.Tensor([self.actions[int(i)][1] for i in a])
     def transitionvec(self,a,s):
@@ -58,7 +52,3 @@ class grid:
         newstate = couples2[0]*self.Ny+couples2[1]
         reward = (newstate==self.G)*A+(A*(-1)+1)*(-1)
         return newstate,reward
-    def representation(self,state):
-       return  pad_sequence([self.states_encod[0,:,int(i)] for i in state]).permute(1,0)
-    def representationaction(self,action):
-       return  pad_sequence([self.actions_encod[0,:,int(i)] for i in action]).permute(1,0)
