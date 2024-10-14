@@ -29,13 +29,3 @@ class Q(nn.Module):
         return out
     def Qmax(self,state_vec):
         return torch.Tensor([max(self.__call__([s]*self.Na, torch.arange(self.Na)).detach().squeeze()) for s in state_vec])
-
-    #def amax_epsilon(self,state_vec, epsilon):
-    #    out = []
-    #    for s in state_vec:
-    #        if torch.bernoulli(torch.Tensor([epsilon])):
-    #            out.append(torch.randint(0,self.Na,(1,))[0])
-    #        else:
-    #            out.append(torch.argmax(self.__call__([s]*self.Na, torch.arange(self.Na)).detach().squeeze()))
-    #    return out
-

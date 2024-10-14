@@ -25,7 +25,6 @@ def qlearn(buffer,
            ):
     Loss = torch.nn.MSELoss()
     listLossQ = []
-    recompense_episodes = []
     Qprim = Q(env, agent)
     def swap():
         Qprim.load_state_dict(Qvalue.state_dict())
@@ -65,10 +64,11 @@ def test(Qvalue,
          env,
          epsilon, 
          plot = False
+         gamma = .9,
          ):
     i = 0
     s = torch.randint(0,env.Nx*env.Ny,(1,)).item()
-    rewardlist = []
+    retour = 0
     while True:
         a = agent.amax_epsilon(Qvalue,[s])[0]
         sp,R = env.transition(a,s)
@@ -76,6 +76,7 @@ def test(Qvalue,
         i+=1
         if plot:
             env.grid(s)
+        retour +=R*gamma
         rewardlist.append(R)
         if s==env.G:
             break

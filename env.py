@@ -15,8 +15,6 @@ class grid:
         self.Nx = Nx
         self.Ny = Ny
         self.G = G
-        self.states_encod = torch.eye(self.Nx*self.Ny).unsqueeze(0)
-        self.actions_encod = torch.eye(self.Na).unsqueeze(0)
     def transition(self,a,s):
         assert(0<=s<self.Nx*self.Ny)
         d = self.actions[a]
@@ -27,19 +25,7 @@ class grid:
             assert(0<=sp[0]*self.Ny+sp[1]<self.Nx*self.Ny)
             s = sp[0]*self.Ny+sp[1]  
         R = (s==self.G)
-
         return s,R
-    def grid(self,s):
-        assert(type(s)==int)
-        assert(0<=s<=self.Nx*self.Ny)
-        T = np.zeros((self.Nx,self.Ny))
-        T[self.G//self.Ny, self.G%self.Ny] = 6
-        T[s//self.Ny, s%self.Ny] = 1
-        print(T)
-    def tensor_state(self,s):
-        return self.states_encod[:,:,s]
-    def representation_action(self,a):
-        return torch.Tensor([self.actions[int(i)][0] for i in a]), torch.Tensor([self.actions[int(i)][1] for i in a])
     def transitionvec(self,a,s):
         "a un est un torch tensor à une dimension"
         "s un est un torch tensor à une dimension"
@@ -52,3 +38,12 @@ class grid:
         newstate = couples2[0]*self.Ny+couples2[1]
         reward = (newstate==self.G)*A+(A*(-1)+1)*(-1)
         return newstate,reward
+    def grid(self,s): #show the grid and the player
+        assert(type(s)==int)
+        assert(0<=s<=self.Nx*self.Ny)
+        T = np.zeros((self.Nx,self.Ny))
+        T[self.G//self.Ny, self.G%self.Ny] = 6
+        T[s//self.Ny, s%self.Ny] = 1
+        print(T)
+    def representation_action(self,a):#tensor to describe the player movements
+        return torch.Tensor([self.actions[int(i)][0] for i in a]), torch.Tensor([self.actions[int(i)][1] for i in a])
