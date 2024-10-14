@@ -1,5 +1,5 @@
 # Implementation of a parallel Q-learning algorithm on a gridworld environment with pyTorch
-I was inspired by course CS 285 at UC Berkeley
+I was inspired by course CS 285 at UC Berkeley.
 
 
 Q-learning with replay buffer and target network:<br>
