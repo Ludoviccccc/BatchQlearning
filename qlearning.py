@@ -68,18 +68,26 @@ def test(Qvalue,
          epsilon, 
          plot = False,
          gamma = .9,
+         graph = False
          ):
     i = 0
     idx = torch.randint(0,env.Nx*env.Ny-len(env.obstacles_encod),(1,)).item()
     s = [a for a in range(env.Nx*env.Ny) if a not in env.obstacles_encod][idx]
+    s = 31
     retour = 0
+    if plot:
+        if graph:
+            env.grid(s,name=os.path.join("image",str(i)))
     while True:
         a = agent.amax_epsilon(Qvalue,[s])[0]
         sp,R = env.transitionvec(torch.Tensor([a]),torch.Tensor([s]))
         s = sp
         i+=1
         if plot:
-            env.grid(int(s[0]))
+            if graph:
+                env.grid(int(s[0]),name=os.path.join("image",str(i)))
+            else:
+                env.grid(int(s[0]))
         retour +=R*gamma
         if s==env.G:
             break

@@ -17,5 +17,6 @@
 	"K" : 5,
 	"loadpath" : "loads",
 	"loadopt" : "opt",
-	"na" : 8
+	"na" : 8,
+	"graph": true
 }

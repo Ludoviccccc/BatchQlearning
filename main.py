@@ -33,6 +33,11 @@ if __name__=="__main__":
     loadpath = data["loadpath"]
     loadopt = data["loadopt"]
     na = data["na"]
+    graph = data["graph"]
+
+
+
+
     env = grid(nx,ny,G = G, obstacles_encod = ob) 
 
     agent = Agent(na,nx,ny,epsilon)
@@ -59,4 +64,4 @@ if __name__=="__main__":
                start = start
                )
     if test_mode:
-        test(Qvalue,agent, env, epsilon = 0, plot = True)
+        test(Qvalue,agent, env, epsilon = 0, plot = True, graph = graph)

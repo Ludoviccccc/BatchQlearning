@@ -3,6 +3,7 @@ import torch.nn.functional as F
 from torch.nn.utils.rnn import pad_sequence
 import torch.nn as nn
 import numpy as np
+import matplotlib.pyplot as plt
 
 class grid:
     """
@@ -29,7 +30,7 @@ class grid:
         newstate = couples2[0]*self.Ny+couples2[1]
         reward = (newstate==self.G)+ NotInGrid*(-1)+(s==newstate)*(-1)+state_not_in_obst*(-1)
         return newstate,reward
-    def grid(self,s):
+    def grid(self,s,name = False):
         assert(type(s)==int)
         assert(0<=s<=self.Nx*self.Ny)
         T = torch.zeros((self.Nx,self.Ny))
@@ -39,5 +40,8 @@ class grid:
             #print("p",p)
             T[int(p)//self.Ny, int(p)%self.Ny] = -1
         print(T)
+        if name:
+            plt.imshow(T.numpy())
+            plt.savefig(name)
     def representation_action(self,a):#tensor to describe the player movements
         return torch.Tensor([self.actions[int(i)][0] for i in a]), torch.Tensor([self.actions[int(i)][1] for i in a])
