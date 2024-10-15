@@ -1,0 +1,21 @@
+{
+	"train":false,
+	"test_mode":true,
+	"start":100,
+	"epsilon":0.1,
+	"gamma" : 0.9,
+	"nx" : 6,
+	"ny" : 6,
+	"G" : 10,
+	"ob" : [ 6, 19, 18,  8, 15, 27,33],
+	"lr" : 1e-3,
+	"n_epochs" : 100,
+	"batch_size" : 20,
+	"M" : 100,
+	"N" : 100,
+	"maxsize" : 100,
+	"K" : 5,
+	"loadpath" : "loads",
+	"loadopt" : "opt",
+	"na" : 8
+}
