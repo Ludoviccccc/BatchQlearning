@@ -1,6 +1,7 @@
 # Implementation of a parallel Q-learning algorithm on a gridworld environment with pyTorch
 I was inspired by course CS 285 at UC Berkeley.
 
+![Alt text](image/myimage.gif)
 
 Q-learning with replay buffer and target network:<br>
 In a loop:
@@ -26,4 +27,3 @@ Integers N and K are the number of iterations for the loop 2 of the collection o
 Futur works:
 Calculation of the values of the Q function and calculation of the return obtained, and compare the curves obtained according to the iterations during the learning.<br>
 
-![Alt text](image/myimage.gif)
