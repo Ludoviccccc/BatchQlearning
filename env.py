@@ -42,6 +42,8 @@ class grid:
         print(T)
         if name:
             plt.imshow(T.numpy())
-            plt.savefig(name)
+            plt.xticks([])
+            plt.yticks([])
+            plt.savefig(name,bbox_inches='tight')
     def representation_action(self,a):#tensor to describe the player movements
         return torch.Tensor([self.actions[int(i)][0] for i in a]), torch.Tensor([self.actions[int(i)][1] for i in a])

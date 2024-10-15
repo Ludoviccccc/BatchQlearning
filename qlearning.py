@@ -75,6 +75,7 @@ def test(Qvalue,
     s = [a for a in range(env.Nx*env.Ny) if a not in env.obstacles_encod][idx]
     s = 31
     retour = 0
+    agent.epsilon = epsilon
     if plot:
         if graph:
             env.grid(s,name=os.path.join("image",str(i)))
