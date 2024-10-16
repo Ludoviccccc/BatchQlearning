@@ -61,12 +61,16 @@ if __name__=="__main__":
                loadpath,
                loadopt,
                gamma = gamma,
-               start = start
-               )
+               start = start)
     if test_mode:
-        test(Qvalue,
-             agent,
-             env,
-             epsilon = 0,
-             plot = True,
-             graph = graph)
+        list_retour, nb_iterations = test(Qvalue,
+                                            agent,
+                                            env,
+                                            epsilon = 0,
+                                            plot = True,
+                                            graph = graph)
+        print(list_retour)
+        plt.plot(list_retour, label="retour")
+        plt.grid()
+        plt.legend()
+        plt.show()

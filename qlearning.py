@@ -25,6 +25,7 @@ def qlearn(buffer,
            ):
     Loss = torch.nn.MSELoss()
     listLossQ = []
+    listRetour = []
     Qprim = Q(env, agent)
     def swap():
         Qprim.load_state_dict(Qvalue.state_dict())
@@ -54,13 +55,21 @@ def qlearn(buffer,
             Samp = buffer.sample(batch_size)
             for k in range(K):
                  updateQ(Samp)
-            if j%100==0:
-                print(f"i = {i}, n = {j},k={k}")
-                torch.save(Qvalue.state_dict(), os.path.join(loadpath,f"q_load_{i}_{j}.pt"))
-                torch.save(optimizerQ.state_dict(), os.path.join(loadopt,f"opt_q_load_{i}_{j}.pt"))
-                retour, it = test(Qvalue,agent, env, epsilon =epsilon)
-                print("retour", retour)
-                print("it", it)
+        print(f"i = {i}, n = {j},k={k}")
+        if i%10==0 and i>0:
+            torch.save(Qvalue.state_dict(), os.path.join(loadpath,f"q_load_{i}_{j}.pt"))
+            torch.save(optimizerQ.state_dict(), os.path.join(loadopt,f"opt_q_load_{i}_{j}.pt"))
+            list_retour, it = test(Qvalue,agent, env, epsilon =epsilon)
+            retour = list_retour[0]
+            listRetour.append(retour)
+            plt.plot(listRetour, label="Retour")
+            plt.xlabel("epoch")
+            plt.title("Retour au premier état de l'episode en fonction de l'epoch")
+            plt.legend()
+            plt.savefig(os.path.join("plot","retour"))
+            plt.close()
+            print("retour", retour)
+            print("nombre iterations", it)
     return None 
 def test(Qvalue,
          agent,
@@ -74,7 +83,6 @@ def test(Qvalue,
     idx = torch.randint(0,env.Nx*env.Ny-len(env.obstacles_encod),(1,)).item()
     s = [a for a in range(env.Nx*env.Ny) if a not in env.obstacles_encod][idx]
     s = 31
-    retour = 0
     agent.epsilon = epsilon
     k = 0
     list_recompense = []
@@ -91,11 +99,10 @@ def test(Qvalue,
                 env.grid(int(s[0]),name=os.path.join("image",str(i)))
             else:
                 env.grid(int(s[0]))
-        retour += R*(gamma**k)
-        list_recompense.append(R*(gamma**k))
+        list_recompense.append(R.item()*(gamma**k))
         k+=1
         if s==env.G:
             break
     list_retour = [sum(list_recompense[i:]) for i in range(len(list_recompense))]
     print(f"{i} pas de temps")
-    return retour, i
+    return list_retour, i
