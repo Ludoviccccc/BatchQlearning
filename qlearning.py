@@ -76,6 +76,8 @@ def test(Qvalue,
     s = 31
     retour = 0
     agent.epsilon = epsilon
+    k = 0
+    list_recompense = []
     if plot:
         if graph:
             env.grid(s,name=os.path.join("image",str(i)))
@@ -89,8 +91,11 @@ def test(Qvalue,
                 env.grid(int(s[0]),name=os.path.join("image",str(i)))
             else:
                 env.grid(int(s[0]))
-        retour +=R*gamma
+        retour += R*(gamma**k)
+        list_recompense.append(R*(gamma**k))
+        k+=1
         if s==env.G:
             break
+    list_retour = [sum(list_recompense[i:]) for i in range(len(list_recompense))]
     print(f"{i} pas de temps")
     return retour, i

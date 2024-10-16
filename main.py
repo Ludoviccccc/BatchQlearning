@@ -64,4 +64,9 @@ if __name__=="__main__":
                start = start
                )
     if test_mode:
-        test(Qvalue,agent, env, epsilon = 0, plot = True, graph = graph)
+        test(Qvalue,
+             agent,
+             env,
+             epsilon = 0,
+             plot = True,
+             graph = graph)
