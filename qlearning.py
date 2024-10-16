@@ -26,6 +26,7 @@ def qlearn(buffer,
     Loss = torch.nn.MSELoss()
     listLossQ = []
     listRetour = []
+    iterations = []
     Qprim = Q(env, agent)
     def swap():
         Qprim.load_state_dict(Qvalue.state_dict())
@@ -61,12 +62,13 @@ def qlearn(buffer,
             torch.save(optimizerQ.state_dict(), os.path.join(loadopt,f"opt_q_load_{i}_{j}.pt"))
             list_retour, it = test(Qvalue,agent, env, epsilon =epsilon)
             retour = list_retour[0]
+            iterations.append(i)
             listRetour.append(retour)
-            plt.plot(listRetour, label="Retour")
+            plt.plot(iterations, listRetour, label="Retour")
             plt.xlabel("epoch")
             plt.title("Retour au premier état de l'episode en fonction de l'epoch")
             plt.legend()
-            plt.savefig(os.path.join("plot","retour"))
+            plt.savefig(os.path.join("plot","retour"), bbox_inches='tight')
             plt.close()
             print("retour", retour)
             print("nombre iterations", it)
