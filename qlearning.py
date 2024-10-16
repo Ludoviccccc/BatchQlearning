@@ -5,7 +5,6 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 from Qfunc import Q
-#from agent import agent
 def qlearn(buffer,
            batch_size,
            M,
@@ -60,7 +59,7 @@ def qlearn(buffer,
         if i%10==0 and i>0:
             torch.save(Qvalue.state_dict(), os.path.join(loadpath,f"q_load_{i}_{j}.pt"))
             torch.save(optimizerQ.state_dict(), os.path.join(loadopt,f"opt_q_load_{i}_{j}.pt"))
-            list_retour, it = test(Qvalue,agent, env, epsilon =epsilon)
+            list_retour,list_Q,it = test(Qvalue,agent, env, epsilon =epsilon)
             retour = list_retour[0]
             iterations.append(i)
             listRetour.append(retour)
@@ -84,10 +83,11 @@ def test(Qvalue,
     i = 0
     idx = torch.randint(0,env.Nx*env.Ny-len(env.obstacles_encod),(1,)).item()
     s = [a for a in range(env.Nx*env.Ny) if a not in env.obstacles_encod][idx]
-    s = 31
+    #s = 31
     agent.epsilon = epsilon
     k = 0
     list_recompense = []
+    list_Q = []
     if plot:
         if graph:
             env.grid(s,name=os.path.join("image",str(i)))
@@ -102,9 +102,10 @@ def test(Qvalue,
             else:
                 env.grid(int(s[0]))
         list_recompense.append(R.item()*(gamma**k))
+        list_Q.append(Qvalue([s],[a]).item())
         k+=1
         if s==env.G:
             break
     list_retour = [sum(list_recompense[i:]) for i in range(len(list_recompense))]
     print(f"{i} pas de temps")
-    return list_retour, i
+    return list_retour,list_Q, i

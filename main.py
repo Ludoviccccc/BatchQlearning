@@ -63,7 +63,7 @@ if __name__=="__main__":
                gamma = gamma,
                start = start)
     if test_mode:
-        list_retour, nb_iterations = test(Qvalue,
+        list_retour,list_Q, nb_iterations = test(Qvalue,
                                             agent,
                                             env,
                                             epsilon = 0,
@@ -71,6 +71,7 @@ if __name__=="__main__":
                                             graph = graph)
         print(list_retour)
         plt.plot(list_retour, label="retour")
+        plt.plot(list_Q,label="Qvalue")
         plt.grid()
         plt.legend()
         plt.show()
