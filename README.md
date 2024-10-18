@@ -25,7 +25,7 @@ Integers N and K are the number of iterations for the loop 2 of the collection o
 * The file main.py calls qlearn using given arguments in arg.json<br> 
 
 
-![Alt text](plot/retour.png)
+![Alt text](plot/retour.png)<br>
 Futur works:
 Calculation of the values of the Q function and calculation of the return obtained, and compare the curves obtained according to the iterations during the learning.<br>
 
