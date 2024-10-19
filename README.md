@@ -21,7 +21,7 @@ Integers N and K are the number of iterations for the loop 2 of the collection o
 * The file qlearning.py implements the loop in a function called qlearn.
 * The file Qfunc.py implements the action-value network Q.
 * The file Buffer.py implements the buffer containing batchs (s,a,s',r)
-* The File arg.json gives values for $K$, $N, n_{epochs}$, gradient descent rate $\alpha$, $n_x, n_y$ and the batch size. 
+* The File arg.json gives values for the discounting factor $\gamma$, $K$, $N, n_{epochs}$, gradient descent rate $\alpha$, $n_x, n_y$ and the batch size. 
 * The file main.py calls qlearn using given arguments in arg.json<br> 
 
 
