@@ -13,7 +13,7 @@ In a loop:
 
 The environement is a grid of size $(n_x,n_y)$. An agent has to reach a point called G.<br>
 There are 8 possible actions: up, right, left, down, up-right, up-left, down-right, down-left.
-Integers N and K are the number of iterations for the loop 2 of the collection of the datapoints from the buffer and for the loop 3 with the batch sampling and the update. The process is repeted $n_{epochs}$ times.<br>
+Integers N and K are the number of iterations for the loop 2 of the collection of the datapoints from the buffer and for the loop 3 with the batch sampling and the update. The process is repeted $n_{iterations}$ times.<br>
 
 
 * The file env.py implements the environment which is the grid.
@@ -21,12 +21,11 @@ Integers N and K are the number of iterations for the loop 2 of the collection o
 * The file qlearning.py implements the loop in a function called qlearn.
 * The file Qfunc.py implements the action-value network Q.
 * The file Buffer.py implements the buffer containing batchs (s,a,s',r)
-* The File arg.json gives values for the discounting factor $\gamma$, $K$, $N, n_{epochs}$, gradient descent rate $\alpha$, $n_x, n_y$ and the batch size. 
+* The File arg.json gives values for the discounting factor $\gamma$, $K$, $N, n_{iterations}$, gradient descent rate $\alpha$, $n_x, n_y$ and the batch size. 
 * The file main.py calls qlearn using given arguments in arg.json<br> 
 
 
 ![Alt text](plot/retour.png)<br>
 Futur works:
-* Calculation of the values of the Q function and calculation of the return obtained, and compare the curves obtained according to the iterations during the learning.<br>
-* Modify the inner loop to include epochs inside rather than using the sample buffer sample.
+* Modify the inner loop to include iterations inside rather than using the sample buffer sample.
 

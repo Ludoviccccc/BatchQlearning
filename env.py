@@ -17,7 +17,7 @@ class grid:
         self.Ny = Ny
         self.G = G
         self.obstacles_encod = obstacles_encod
-    def transitionvec(self,a,s):
+    def transitionvec(self,a:torch.Tensor,s: torch.Tensor):
         "a un est un torch tensor à une dimension"
         "s un est un torch tensor à une dimension"
         couples = {0:s//self.Ny,1:s%self.Ny}
@@ -30,7 +30,7 @@ class grid:
         newstate = couples2[0]*self.Ny+couples2[1]
         reward = (newstate==self.G)+ NotInGrid*(-1)+(s==newstate)*(-1)+state_not_in_obst*(-1)
         return newstate,reward
-    def grid(self,s,name = False):
+    def grid(self,s: int,name = False):
         assert(type(s)==int)
         assert(0<=s<=self.Nx*self.Ny)
         T = torch.zeros((self.Nx,self.Ny))

@@ -14,7 +14,7 @@ def qlearn(buffer,
            agent,
            optimizerQ,
            env,
-           n_epochs,
+           n_iterations,
            loadpath,
            loadopt, 
            gamma = .9,
@@ -48,7 +48,7 @@ def qlearn(buffer,
         optimizerQ.step()
         listLossQ.append(loss.detach().to("cpu"))
 ################################################################
-    for i in range(start,n_epochs+1):
+    for i in range(start,n_iterations+1):
         swap()
         collection(M)
         for j in range(N):
@@ -81,9 +81,8 @@ def test(Qvalue,
          graph = False
          ):
     i = 0
-    idx = torch.randint(0,env.Nx*env.Ny-len(env.obstacles_encod),(1,)).item()
-    s = [a for a in range(env.Nx*env.Ny) if a not in env.obstacles_encod][idx]
-    s = 12
+    idx = torch.randint(0,env.Nx*env.Ny-len(env.obstacles_encod)-1,(1,)).item()
+    s = [state for state in range(env.Nx*env.Ny) if state not in env.obstacles_encod and state!=env.G][idx]
     agent.epsilon = epsilon
     k = 0
     list_recompense = []

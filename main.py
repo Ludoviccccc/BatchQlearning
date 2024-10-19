@@ -24,7 +24,7 @@ if __name__=="__main__":
     G = data["G"]
     ob = torch.Tensor(data["ob"])
     lr = data["lr"]
-    n_epochs = data["n_epochs"]
+    n_iterations = data["n_iterations"]
     batch_size = data["batch_size"]
     M = data["M"]
     N = data["N"]
@@ -57,7 +57,7 @@ if __name__=="__main__":
                agent,
                optimizerQ,
                env,
-               n_epochs,
+               n_iterations,
                loadpath,
                loadopt,
                gamma = gamma,
@@ -68,7 +68,9 @@ if __name__=="__main__":
                                             env,
                                             epsilon = epsilon,
                                             plot = True,
-                                            graph = graph)
+                                            gamma = gamma,
+                                            graph = graph
+                                            )
         print(list_retour)
         plt.plot(list_retour, label="retour")
         plt.plot(list_Q,label="Qvalue")
