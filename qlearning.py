@@ -83,7 +83,7 @@ def test(Qvalue,
     i = 0
     idx = torch.randint(0,env.Nx*env.Ny-len(env.obstacles_encod),(1,)).item()
     s = [a for a in range(env.Nx*env.Ny) if a not in env.obstacles_encod][idx]
-    #s = 31
+    s = 12
     agent.epsilon = epsilon
     k = 0
     list_recompense = []
@@ -91,7 +91,7 @@ def test(Qvalue,
     if plot:
         if graph:
             env.grid(s,name=os.path.join("image",str(i)))
-    while True:
+    while s!=env.G:
         a = agent.amax_epsilon(Qvalue,[s])[0]
         sp,R = env.transitionvec(torch.Tensor([a]),torch.Tensor([s]))
         s = sp
@@ -104,8 +104,6 @@ def test(Qvalue,
         list_recompense.append(R.item()*(gamma**k))
         list_Q.append(Qvalue([s],[a]).item())
         k+=1
-        if s==env.G:
-            break
     list_retour = [sum(list_recompense[i:]) for i in range(len(list_recompense))]
     print(f"{i} pas de temps")
     return list_retour,list_Q, i

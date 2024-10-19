@@ -66,7 +66,7 @@ if __name__=="__main__":
         list_retour,list_Q, nb_iterations = test(Qvalue,
                                             agent,
                                             env,
-                                            epsilon = 0,
+                                            epsilon = epsilon,
                                             plot = True,
                                             graph = graph)
         print(list_retour)
